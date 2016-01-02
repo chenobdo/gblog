@@ -49,3 +49,4 @@ $router->group(['namespace' => 'Admin', 'middleware' => 'auth'], function () {
 get('/auth/login', 'Auth\AuthController@getLogin');
 post('/auth/login', 'Auth\AuthController@postLogin');
 get('/auth/logout', 'Auth\AuthController@getLogout');//2016-01-01
+//2016-01-02
