@@ -197,3 +197,4 @@ get('/auth/logout', 'Auth\AuthController@getLogout');//2016-01-01
 //2016-05-26
 //2016-05-27
 //2016-05-28
+//2016-05-29
