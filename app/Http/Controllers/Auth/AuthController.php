@@ -6,7 +6,8 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+// use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AuthController extends Controller
 {
@@ -21,7 +22,12 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    // use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    // 因为gblog不允许普通人注册
+    use AuthenticatesUsers, ThrottlesLogins;
+
+    protected $redirectAfterLogout = '/auth/login';
+    protected $redirectTo = '/admin/post';
 
     /**
      * Create a new authentication controller instance.

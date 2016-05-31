@@ -1,5 +1,5 @@
 <?php
 return [
-    'title' => 'My GBlog',
+    'title' => 'Gabriel Blog',
     'posts_per_page' => 5
 ];
