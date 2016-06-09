@@ -1,9 +1,14 @@
 <?php
 return [
-    'title' => 'Gabriel Blog',
-    'posts_per_page' => 5, 
+    'name' => "G_Blog",
+    'title' => "G_Blog",
+    'subtitle' => 'https://github.com/GabrielChen777/gblog',
+    'description' => 'Laravel框架博客',
+    'author' => 'Gabriel',
+    'page_image' => 'home-bg.jpg',
+    'posts_per_page' => 10,
     'uploads' => [
         'storage' => 'local',
-        'webpath' => '/uploads',
-    ]
+        'webpath' => '/uploads/',
+    ],
 ];

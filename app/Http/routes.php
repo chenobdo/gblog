@@ -28,7 +28,7 @@ get('admin', function () {
     return redirect('/admin/post');
 });
 $router->group(['namespace' => 'Admin', 'middleware' => 'auth'], function () {
-    resource('admin/post', 'PostController');
+    resource('admin/post', 'PostController', ['except' => 'show']);
     resource('admin/tag', 'TagController', ['except' => 'show']);
     get('admin/upload', 'UploadController@index');
     // 添加如下路由
