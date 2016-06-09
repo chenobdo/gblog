@@ -43,10 +43,15 @@ return [
 
     'disks' => [
 
+        // 'local' => [
+        //     'driver' => 'local',
+        //     'root'   => storage_path('app'),
+        // ],
+
         'local' => [
-            'driver' => 'local',
-            'root'   => storage_path('app'),
-        ],
+            'driver' => 'local', 
+            'root' => public_path('uploads')
+        ], 
 
         'ftp' => [
             'driver'   => 'ftp',

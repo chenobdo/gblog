@@ -31,6 +31,11 @@ $router->group(['namespace' => 'Admin', 'middleware' => 'auth'], function () {
     resource('admin/post', 'PostController');
     resource('admin/tag', 'TagController', ['except' => 'show']);
     get('admin/upload', 'UploadController@index');
+    // 添加如下路由
+    post('admin/upload/file', 'UploadController@uploadFile');
+    delete('admin/upload/file', 'UploadController@deleteFile');
+    post('admin/upload/folder', 'UploadController@createFolder');
+    delete('admin/upload/folder', 'UploadController@deleteFolder');
 });
 
 // Logging in and out
