@@ -23,6 +23,13 @@ get('/', function () {
 get('blog', 'BlogController@index');
 get('blog/{slug}', 'BlogController@showPost');
 
+$router->get('contact', 'ContactController@showForm');
+Route::post('contact', 'ContactController@sendContactInfo');
+
+get('rss', 'BlogController@rss');
+
+get('sitemap.xml', 'BlogController@siteMap');
+
 // Admin area
 get('admin', function () {
     return redirect('/admin/post');
