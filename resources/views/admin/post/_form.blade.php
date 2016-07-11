@@ -2,7 +2,7 @@
     <div class="col-md-8">
         <div class="form-group">
             <label for="title" class="col-md-2 control-label">
-                Title
+                标题
             </label>
             <div class="col-md-10">
                 <input type="text" class="form-control" name="title" autofocus id="title" value="{{ $title }}">
@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             <label for="subtitle" class="col-md-2 control-label">
-                Subtitle
+                副标题
             </label>
             <div class="col-md-10">
                 <input type="text" class="form-control" name="subtitle" id="subtitle" value="{{ $subtitle }}">
@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             <label for="page_image" class="col-md-2 control-label">
-                Page Image
+                图片
             </label>
             <div class="col-md-10">
                 <div class="row">
@@ -51,7 +51,7 @@
         </div>
         <div class="form-group">
             <label for="content" class="col-md-2 control-label">
-                Content
+                内容
             </label>
             <div class="col-md-10">
                  <textarea class="form-control" name="content" rows="14" id="content">{{ $content }}</textarea>
@@ -61,7 +61,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label for="publish_date" class="col-md-3 control-label">
-                Pub Date
+                发布日期
             </label>
             <div class="col-md-8">
                 <input class="form-control" name="publish_date" id="publish_date" type="text" value="{{ $publish_date }}">
@@ -69,7 +69,7 @@
         </div>
         <div class="form-group">
             <label for="publish_time" class="col-md-3 control-label">
-                Pub Time
+                发布时间
             </label>
             <div class="col-md-8">
                 <input class="form-control" name="publish_time" id="publish_time" type="text" value="{{ $publish_time }}">
@@ -87,7 +87,7 @@
         </div>
         <div class="form-group">
             <label for="tags" class="col-md-3 control-label">
-                Tags
+                标签
             </label>
             <div class="col-md-8">
                 <select name="tags[]" id="tags" class="form-control" multiple>
@@ -101,7 +101,7 @@
         </div>
         <div class="form-group">
             <label for="layout" class="col-md-3 control-label">
-                Layout
+                布局
             </label>
             <div class="col-md-8">
                 <input type="text" class="form-control" name="layout" id="layout" value="{{ $layout }}">
@@ -109,7 +109,7 @@
         </div>
         <div class="form-group">
             <label for="meta_description" class="col-md-3 control-label">
-                Meta
+                描述
             </label>
             <div class="col-md-8">
                 <textarea class="form-control" name="meta_description" id="meta_description" rows="6">
