@@ -40,6 +40,6 @@ class ContactController extends Controller
         });
 
         return back()
-            ->withSuccess("Thank you for your message. It has been sent.");
+            ->withSuccess("感谢你的来信。发送已成功。");
     }
 }
