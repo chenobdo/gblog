@@ -10,7 +10,7 @@
             <h1>Contact Me</h1>
             <hr class="small">
             <h2 class="subheading">
-              Have questions? I have answers (maybe).
+              有啥问题?我来回答(得空).
             </h2>
           </div>
         </div>
@@ -26,35 +26,34 @@
         @include('admin.partials.errors')
         @include('admin.partials.success')
         <p>
-          Want to get in touch with me? Fill out the form below to send me a
-          message and I will try to get back to you within 24 hours!
+          想联系作者? 填写表格信息，我将在24小时内联系你!
         </p>
         <form action="/contact" method="post">
           <input type="hidden" name="_token" value="{!! csrf_token() !!}">
           <div class="row control-group">
             <div class="form-group col-xs-12">
-              <label for="name">Name</label>
+              <label for="name">姓名</label>
               <input type="text" class="form-control" id="name" name="name"
                      value="{{ old('name') }}">
             </div>
           </div>
           <div class="row control-group">
             <div class="form-group col-xs-12">
-              <label for="email">Email Address</label>
+              <label for="email">邮箱地址</label>
               <input type="email" class="form-control" id="email" name="email"
                      value="{{ old('email') }}">
             </div>
           </div>
           <div class="row control-group">
             <div class="form-group col-xs-12 controls">
-              <label for="phone">Phone Number</label>
+              <label for="phone">手机号</label>
               <input type="tel" class="form-control" id="phone" name="phone"
                      value="{{ old('phone') }}">
             </div>
           </div>
           <div class="row control-group">
             <div class="form-group col-xs-12 controls">
-              <label for="message">Message</label>
+              <label for="message">消息</label>
               <textarea rows="5" class="form-control" id="message"
                         name="message">{{ old('message') }}</textarea>
             </div>
@@ -62,7 +61,7 @@
           <br>
           <div class="row">
             <div class="form-group col-xs-12">
-              <button type="submit" class="btn btn-default">Send</button>
+              <button type="submit" class="btn btn-default">发送</button>
             </div>
           </div>
         </form>
