@@ -24,9 +24,9 @@ class BlogController extends Controller
         return view($layout, $data);
     }
 
-    public function showPost($slug, Request $request)
+    public function showPost($id, Request $request)
     {
-        $post = Post::with('tags')->whereSlug($slug)->firstOrFail();
+        $post = Post::with('tags')->where('id', $id)->firstOrFail();
         $tag = $request->get('tag');
         if ($tag) {
             $tag = Tag::whereTag($tag)->firstOrFail();
