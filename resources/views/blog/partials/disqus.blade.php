@@ -1,8 +1,8 @@
 <div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://gblog.app/blog/{{ $slug }}';
-        this.page.identifier = 'blog-{{ $slug }}';
+        this.page.url = 'http://gblog.app/blog/{{ $id }}';
+        this.page.identifier = 'blog-{{ $id }}';
     };
     (function() {  // DON'T EDIT BELOW THIS LINE
         var d = document, s = d.createElement('script');
