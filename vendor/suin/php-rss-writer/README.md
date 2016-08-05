@@ -27,18 +27,20 @@ $channel
     ->pubDate(strtotime('Tue, 21 Aug 2012 19:50:37 +0900'))
     ->lastBuildDate(strtotime('Tue, 21 Aug 2012 19:50:37 +0900'))
     ->ttl(60)
+    ->pubsubhubbub('http://example.com/feed.xml', 'http://pubsubhubbub.appspot.com') // This is optional. Specify PubSubHubbub discovery if you want.
     ->appendTo($feed);
 
 // Blog item
 $item = new Item();
 $item
     ->title('Blog Entry Title')
-    ->description('Blog body')
+    ->description('<div>Blog body</div>')
     ->contentEncoded('<div>Blog body</div>')
     ->url('http://blog.example.com/2012/08/21/blog-entry/')
     ->author('Hidehito Nozawa')
     ->pubDate(strtotime('Tue, 21 Aug 2012 19:50:37 +0900'))
     ->guid('http://blog.example.com/2012/08/21/blog-entry/', true)
+    ->preferCdata(true) // By this, title and description become CDATA wrapped HTML.
     ->appendTo($channel);
 
 // Podcast item
@@ -57,7 +59,7 @@ Output:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Channel Title</title>
     <link>http://blog.example.com</link>
@@ -67,11 +69,13 @@ Output:
     <pubDate>Tue, 21 Aug 2012 10:50:37 +0000</pubDate>
     <lastBuildDate>Tue, 21 Aug 2012 10:50:37 +0000</lastBuildDate>
     <ttl>60</ttl>
-    <item xmlns:default="http://purl.org/rss/1.0/modules/content/">
-      <title>Blog Entry Title</title>
+    <atom:link rel="self" href="http://example.com/feed.xml" type="application/rss+xml"/>
+    <atom:link rel="hub" href="http://pubsubhubbub.appspot.com"/>
+    <item>
+      <title><![CDATA[Blog Entry Title]]></title>
       <link>http://blog.example.com/2012/08/21/blog-entry/</link>
-      <description>Blog body</description>
-      <content:encoded xmlns="http://purl.org/rss/1.0/modules/content/"><![CDATA[<div>Blog body</div>]]></content:encoded>
+      <description><![CDATA[<div>Blog body</div>]]></description>
+      <content:encoded><![CDATA[<div>Blog body</div>]]></content:encoded>
       <guid>http://blog.example.com/2012/08/21/blog-entry/</guid>
       <pubDate>Tue, 21 Aug 2012 10:50:37 +0000</pubDate>
       <author>Hidehito Nozawa</author>
@@ -125,6 +129,18 @@ require_once 'vendor/autoload.php';
 The [`examples`](examples) directory contains usage examples for RSSWriter.
 
 If you want to know APIs, please see [`FeedInterface`](src/Suin/RSSWriter/FeedInterface.php), [`ChannelInterface`](src/Suin/RSSWriter/ChannelInterface.php) and [`ItemInterface`](src/Suin/RSSWriter/ItemInterface.php).
+
+## How to Test
+
+```sh
+$ vendor/bin/phpunit
+```
+
+## Test through PHP 5.4 ~ PHP 7.0
+
+```console
+$ docker-compose up
+```
 
 ## License
 
