@@ -10,6 +10,7 @@ return array(
     'Suin\\RSSWriter' => array($vendorDir . '/suin/php-rss-writer/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
+    'Pimple' => array($vendorDir . '/pimple/pimple/src'),
     'PhpSpec' => array($vendorDir . '/phpspec/phpspec/src'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
     'Michelf' => array($vendorDir . '/michelf/php-markdown'),
