@@ -40,7 +40,14 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-registered"></i>
+                                Login
+                            </button>
+                            <a href="/wechat" class="btn btn-success login-btn weichat-login-btn">
+                                <i class="fa fa-weixin"></i>
+                                登 录
+                            </a>
                             </div>
                         </div>
                     </form>

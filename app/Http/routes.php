@@ -51,4 +51,5 @@ post('/auth/login', 'Auth\AuthController@postLogin');
 get('/auth/logout', 'Auth\AuthController@getLogout');
 
 //微信
-Route::any('/wechat', 'WechatController@serve');
+Route::any('/wechat', 'WechatController@index');
+Route::any('/wechat/login', 'WechatController@login');
