@@ -51,5 +51,8 @@ post('/auth/login', 'Auth\AuthController@postLogin');
 get('/auth/logout', 'Auth\AuthController@getLogout');
 
 //微信
-Route::any('/wechat', 'WechatController@index');
-Route::any('/wechat/login', 'WechatController@login');
+Route::group(['prefix' => '/wechat'], function () {
+    Route::get('/', 'WechatController@index');
+    Route::get('/login', 'WechatController@login');
+    Route::get('/curl', 'WechatController@curl');
+});
