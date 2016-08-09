@@ -11,21 +11,21 @@ class WechatController extends Controller
     {
         $wechat = app('wechat');
         $wechat->server->setMessageHandler(function ($message) {
-            Log::info($message);
             switch ($message->MsgType) {
                 case 'text' :
                     $data = [
                         'key' => '53be621f65af4fca87da2f527da08081',
-                        'info' => '今天天气怎么样',
-                        'userid' => '123456'
+                        'info' => $message->Content,
+                        'userid' => $message->FromUserName
                     ];
                     $url = 'http://www.tuling123.com/openapi/api';
                     $res = $this->curl($url, 'GET', $data);
-                    $rt = json_decode($res);
-                    if ($rt['code'] == 10000) {
-                        return $rt['text'];
+	            $rt = json_decode($res);
+                    if ($rt->code == 100000) {
+                        return $rt->text;
                     }
-                    return '能再说一边吗？我没有听清';
+		Log::info('不能理解的话：'.$res);
+                    return '不好意思，我不太能理解你说的';					
                 default :
                     return '说人话';
             }

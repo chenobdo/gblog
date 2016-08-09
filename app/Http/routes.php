@@ -52,7 +52,7 @@ get('/auth/logout', 'Auth\AuthController@getLogout');
 
 //微信
 Route::group(['prefix' => '/wechat'], function () {
-    Route::get('/', 'WechatController@index');
+    Route::post('/', 'WechatController@index');
     Route::get('/login', 'WechatController@login');
     Route::get('/curl', 'WechatController@curl');
 });
