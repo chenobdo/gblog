@@ -10,58 +10,44 @@ class WechatController extends Controller
 {
     public function index(Request $request)
     {
-        $wechat = app('wechat');
-        $wechat->server->setMessageHandler(function ($message) {
+        $wechatServer = Wechat::server();
+        $wechatServer->setMessageHandler(function ($message) {
             $this->setUser($message->FromUserName);
-//            switch ($message->MsgType) {
-//                case 'text' :
-//                    $data = [
-//                        'key' => '53be621f65af4fca87da2f527da08081',
-//                        'info' => $message->Content,
-//                        'userid' => $message->FromUserName
-//                    ];
-//                    $url = 'http://www.tuling123.com/openapi/api';
-//                    $res = $this->curl($url, 'GET', $data);
-//                    $rt = json_decode($res);
-//                    if ($rt->code == 100000) {
-//                        return $rt->text;
-//                    }
-//                    Log::info('不能理解的话：' . $res);
-//                    return '不好意思，我不太能理解你说的';
-//                default :
-                    return '说人话';
-//            }
+            switch ($message->MsgType) {
+                case 'text' :
+                    $data = [
+                        'key' => '53be621f65af4fca87da2f527da08081',
+                        'info' => $message->Content,
+                        'userid' => $message->FromUserName
+                    ];
+                    $url = 'http://www.tuling123.com/openapi/api';
+                    $res = $this->curl($url, 'GET', $data);
+                    $rt = json_decode($res);
+                    if ($rt->code == 100000) {
+                        return $rt->text;
+                    }
+                    Log::info('不能理解的话：' . $res);
+                    return '不好意思，我不太能理解你说的';
+                default :
+                    return '你好啊，欢迎关注Gabriel豆！';
+            }
         });
 
-        return $wechat->server->serve();
+        return $wechatServer->serve();
     }
 
+    /**
+     * 注册粉丝
+     * @param $openid
+     * @return void
+     */
     public function setUser($openid)
     {
-        $wechat = app('wechat');
         $User = new User();
-        $user = $User->select('*')->where(['openid', $openid])->get();
-        Log::Info($user);
-        if (empty($user)) {
-            $userInfo = $wechat->user->get($openid);
-            $user = [
-                'subscribe' => $userInfo->subscribe,
-                'openid' => $userInfo->openid,
-                'nickname' => $userInfo->nickname,
-                'sex' => $userInfo->sex,
-                'language' => $userInfo->language,
-                'city' => $userInfo->city,
-                'province' => $userInfo->province,
-                'country' => $userInfo->country,
-                'headimgurl' =>  $userInfo->headimgurl,
-                'subscribe_time' => $userInfo->subscribe_time,
-                'unionid' => $userInfo->unionid,
-                'remark' => $userInfo->remark,
-                'groupid' => $userInfo->groupid,
-                'tagid_list' => json_encode($userInfo->tagid_list)
-            ];
-            $rt = $user->insert($user);
-            Log::Info($rt);
+        $data = $User->select('*')->where('openid', $openid)->get();
+        if (!count($data)) {
+            $rt = $User->insert(['openid' => $openid]);
+            Log::info($rt);
         }
     }
 
