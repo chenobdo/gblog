@@ -54,5 +54,4 @@ get('/auth/logout', 'Auth\AuthController@getLogout');
 Route::group(['prefix' => '/wechat'], function () {
     Route::post('/', 'WechatController@index');
     Route::get('/login', 'WechatController@login');
-    Route::get('/curl', 'WechatController@curl');
 });
