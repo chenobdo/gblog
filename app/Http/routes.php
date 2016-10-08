@@ -22,6 +22,7 @@ get('/', function () {
 
 get('blog', 'BlogController@index');
 get('blog/{id}', 'BlogController@showPost');
+get('test', 'BlogController@test');
 
 $router->get('contact', 'ContactController@showForm');
 Route::post('contact', 'ContactController@sendContactInfo');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Log;
 use App\User;
+use Wechat;
 
 class WechatController extends Controller
 {
