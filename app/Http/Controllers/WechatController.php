@@ -13,7 +13,24 @@ class WechatController extends Controller
     {
         $wechatServer = Wechat::server();
         $wechatServer->setMessageHandler(function ($message) {
-            $this->setUser($message->FromUserName);
+            $openid = $message->FromUserName;
+            $User = new User();
+            $user = $User->select('*')->where('openid', $openid)->get();
+            if (!count($user)) {
+                $uid = $user->id;
+            } else {
+                $uid = $User->insertUser($openid);
+            }
+            $message = [
+                'from_uid' => $uid,
+                'to_uid' => 1,
+                'message' => $message->Content,
+                'mtype' => 1,
+                'state' => 1,
+                'created_at' => time(),
+                'updated_at' => time()
+            ];
+            $message->insert($message);
             switch ($message->MsgType) {
                 case 'text' :
                     $data = [
@@ -25,31 +42,26 @@ class WechatController extends Controller
                     $res = $this->curl($url, 'GET', $data);
                     $rt = json_decode($res);
                     if ($rt->code == 100000) {
+                        $message = [
+                            'from_uid' => 1,
+                            'to_uid' => $uid,
+                            'message' => $message->Content,
+                            'mtype' => 1,
+                            'state' => 1,
+                            'created_at' => time(),
+                            'updated_at' => time()
+                        ];
+                        $message->insert($message);
                         return $rt->text;
                     }
                     Log::info('不能理解的话：' . $res);
                     return '不好意思，我不太能理解你说的';
                 default :
-                    return '你好啊，欢迎关注Gabriel豆！';
+                    return '你好啊，欢迎关注Gabriel。';
             }
         });
 
         return $wechatServer->serve();
-    }
-
-    /**
-     * 注册粉丝
-     * @param $openid
-     * @return void
-     */
-    public function setUser($openid)
-    {
-        $User = new User();
-        $data = $User->select('*')->where('openid', $openid)->get();
-        if (!count($data)) {
-            $rt = $User->insert(['openid' => $openid]);
-            Log::info($rt);
-        }
     }
 
     /**
