@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Log;
 use App\User;
+use App\Message;
 use Wechat;
 
 class WechatController extends Controller
@@ -15,22 +16,14 @@ class WechatController extends Controller
         $wechatServer->setMessageHandler(function ($message) {
             $openid = $message->FromUserName;
             $User = new User();
-            $user = $User->select('*')->where('openid', $openid)->get();
-            if (!count($user)) {
+            $user = $User->select('*')->where('openid', $openid)->first();
+            if (!empty($user)) {
                 $uid = $user->id;
             } else {
                 $uid = $User->insertUser($openid);
             }
-            $message = [
-                'from_uid' => $uid,
-                'to_uid' => 1,
-                'message' => $message->Content,
-                'mtype' => 1,
-                'state' => 1,
-                'created_at' => time(),
-                'updated_at' => time()
-            ];
-            $message->insert($message);
+            $Message = new Message();
+            $Message->insertMsg($uid, 1, $message->Content);
             switch ($message->MsgType) {
                 case 'text' :
                     $data = [
@@ -42,16 +35,7 @@ class WechatController extends Controller
                     $res = $this->curl($url, 'GET', $data);
                     $rt = json_decode($res);
                     if ($rt->code == 100000) {
-                        $message = [
-                            'from_uid' => 1,
-                            'to_uid' => $uid,
-                            'message' => $message->Content,
-                            'mtype' => 1,
-                            'state' => 1,
-                            'created_at' => time(),
-                            'updated_at' => time()
-                        ];
-                        $message->insert($message);
+                        $Message->insertMsg(1, $uid, $rt->text);
                         return $rt->text;
                     }
                     Log::info('不能理解的话：' . $res);

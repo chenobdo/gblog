@@ -44,12 +44,11 @@ class User extends Model implements AuthenticatableContract,
      */
     public function insertUser($openid)
     {
-        $rt = $this->insert([
+        return $this->insertGetId([
             'openid' => $openid,
+            'email' => $openid.'@gblog.com',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-        Log::info($rt);
-        return $rt;
     }
 }
