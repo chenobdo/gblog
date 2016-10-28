@@ -22,6 +22,7 @@ get('/', function () {
 
 get('blog', 'BlogController@index');
 get('blog/{id}', 'BlogController@showPost');
+get('test', 'BlogController@test');
 
 $router->get('contact', 'ContactController@showForm');
 Route::post('contact', 'ContactController@sendContactInfo');
@@ -49,3 +50,9 @@ $router->group(['namespace' => 'Admin', 'middleware' => 'auth'], function () {
 get('/auth/login', 'Auth\AuthController@getLogin');
 post('/auth/login', 'Auth\AuthController@postLogin');
 get('/auth/logout', 'Auth\AuthController@getLogout');
+
+//微信
+Route::group(['prefix' => '/wechat'], function () {
+    Route::post('/', 'WechatController@index');
+    Route::get('/login', 'WechatController@login');
+});

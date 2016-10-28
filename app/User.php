@@ -36,4 +36,19 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * 注册粉丝
+     * @param $openid
+     * @return void
+     */
+    public function insertUser($openid)
+    {
+        return $this->insertGetId([
+            'openid' => $openid,
+            'email' => $openid.'@gblog.com',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+    }
 }
