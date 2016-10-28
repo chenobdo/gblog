@@ -197,4 +197,6 @@ return [
         'Wechat' => Overtrue\LaravelWechat\Facade::class,
     ],
 
+    'tuling_key' => '53be621f65af4fca87da2f527da08081',
+    'tuling_api' => 'http://www.tuling123.com/openapi/api'
 ];

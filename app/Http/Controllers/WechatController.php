@@ -27,11 +27,11 @@ class WechatController extends Controller
             switch ($message->MsgType) {
                 case 'text' :
                     $data = [
-                        'key' => '53be621f65af4fca87da2f527da08081',
+                        'key' => config('app.tuling_key'),
                         'info' => $message->Content,
                         'userid' => $message->FromUserName
                     ];
-                    $url = 'http://www.tuling123.com/openapi/api';
+                    $url = config('app.tuling_api');
                     $res = $this->curl($url, 'GET', $data);
                     $rt = json_decode($res);
                     if ($rt->code == 100000) {
