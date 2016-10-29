@@ -71,6 +71,6 @@ class User extends Model implements AuthenticatableContract,
     public function getUidByName($name)
     {
         $user = $this->where('name', $name)->first();
-        return $user ? $user->id : '';
+        return $user ? $user->id : null;
     }
 }

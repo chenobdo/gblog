@@ -36,7 +36,11 @@ class MessageController extends Controller
         $User = new User();
         $uid = $User->getUidByName($search);
 
-        $datas = Message::where('from_uid', $uid)->orWhere('to_uid', $uid);
+        if (empty($uid)) {
+            $datas = Message::where([]);
+        } else {
+            $datas = Message::where('from_uid', $uid)->orWhere('to_uid', $uid);
+        }
 
         $messages = $datas->skip($start)->take($length)->get()->toArray();
         foreach ($messages as &$message) {
