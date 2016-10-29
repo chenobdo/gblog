@@ -10,6 +10,9 @@
         <li @if (Request::is('admin/upload*')) class="active" @endif>
             <a href="/admin/upload">Uploads</a>
         </li>
+        <li @if (Request::is('admin/message*')) class="active" @endif>
+            <a href="/admin/message">Messages</a>
+        </li>
     @endif
 </ul>
 

@@ -51,4 +51,26 @@ class User extends Model implements AuthenticatableContract,
             'updated_at' => date('Y-m-d H:i:s')
         ]);
     }
+
+    /**
+     * 获取用户名 By uid
+     * @param $uid
+     * @return mixed
+     */
+    public function getNameByUid($uid)
+    {
+        $user = $this->find($uid);
+        return $user->name ?: $uid;
+    }
+
+    /**
+     * 获取用户id By name
+     * @param $name
+     * @return mixed
+     */
+    public function getUidByName($name)
+    {
+        $user = $this->where('name', $name)->first();
+        return $user ? $user->id : '';
+    }
 }

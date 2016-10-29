@@ -36,14 +36,19 @@ get('admin', function () {
     return redirect('/admin/post');
 });
 $router->group(['namespace' => 'Admin', 'middleware' => 'auth'], function () {
+    //Post
     resource('admin/post', 'PostController', ['except' => 'show']);
+    //Tag
     resource('admin/tag', 'TagController', ['except' => 'show']);
+    //Upload
     get('admin/upload', 'UploadController@index');
-    // 添加如下路由
     post('admin/upload/file', 'UploadController@uploadFile');
     delete('admin/upload/file', 'UploadController@deleteFile');
     post('admin/upload/folder', 'UploadController@createFolder');
     delete('admin/upload/folder', 'UploadController@deleteFolder');
+    //Message
+    get('admin/message', 'MessageController@index');
+    get('admin/message/paginate', 'MessageController@paginate');
 });
 
 // Logging in and out

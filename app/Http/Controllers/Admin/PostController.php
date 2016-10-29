@@ -12,14 +12,14 @@ use App\Post;
 class PostController extends Controller
 {
     /**
-      * Display a listing of the posts.
-      *
-      * @return Response
-      */
+     * Display a listing of the posts.
+     *
+     * @return Response
+     */
     public function index()
     {
         return view('admin.post.index')
-                    ->withPosts(Post::all());
+            ->withPosts(Post::all());
     }
 
     /**
@@ -43,8 +43,8 @@ class PostController extends Controller
         $post->syncTags($request->get('tags', []));
 
         return redirect()
-                        ->route('admin.post.index')
-                        ->withSuccess('New Post Successfully Created.');
+            ->route('admin.post.index')
+            ->withSuccess('New Post Successfully Created.');
     }
 
     /**
@@ -75,13 +75,13 @@ class PostController extends Controller
 
         if ($request->action === 'continue') {
             return redirect()
-                            ->back()
-                            ->withSuccess('Post saved.');
+                ->back()
+                ->withSuccess('Post saved.');
         }
 
         return redirect()
-                        ->route('admin.post.index')
-                        ->withSuccess('Post saved.');
+            ->route('admin.post.index')
+            ->withSuccess('Post saved.');
     }
 
     /**
@@ -97,7 +97,7 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()
-                        ->route('admin.post.index')
-                        ->withSuccess('Post deleted.');
+            ->route('admin.post.index')
+            ->withSuccess('Post deleted.');
     }
 }
