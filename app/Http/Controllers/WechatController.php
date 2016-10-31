@@ -41,7 +41,7 @@ class WechatController extends Controller
                     Log::info('不能理解的话：' . $res);
                     return '不好意思，我不太能理解你说的';
                 default :
-                    return '你好啊，欢迎关注Gabriel。';
+                    return '你好，我是聊天机器人Gabriel。';
             }
         });
 
