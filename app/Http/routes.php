@@ -61,3 +61,6 @@ Route::group(['prefix' => '/wechat'], function () {
     Route::post('/', 'WechatController@index');
     Route::get('/login', 'WechatController@login');
 });
+
+//swoole
+get("/swoole/send", "SwooleController@send");
