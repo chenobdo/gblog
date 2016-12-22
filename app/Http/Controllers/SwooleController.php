@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 
-class Swoole extends Controller
+class SwooleController extends Controller
 {
     private $client;
 
